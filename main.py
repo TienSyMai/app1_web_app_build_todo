@@ -1,14 +1,14 @@
+#https://tiensymai-app1-web-app-build-todo-main-dh9mvg.streamlit.app/#my-todo-app
 import streamlit as st
 import functions
 
-print("herre")
 todos = functions.get_todos()
 def add_todo():
     todo = st.session_state["new_todo"] + "\n"
-    print(todo)
+    print(todo + "\n")
     todos.append(todo)
     functions.write_todos(todos)
-
+    st.session_state["new_todo"] = ""  # Dòng này giúp tự động xóa trắng ô nhập liệu sau khi thêm todo
 st.title("My todo app")
 st.subheader("This is my todo app")
 st.write("This app is going to increase you productivity")
@@ -23,8 +23,7 @@ for index, todo in enumerate(todos):
 
 st.text_input(label="Enter a todo", placeholder="Add a todo...", on_change=add_todo, key="new_todo")
 
-print("hello")
-print("hi")
+
 
 
 st.session_state
